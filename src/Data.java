@@ -25,4 +25,24 @@ public class Data {
             }
         }
     }
+
+    public synchronized void write(int number){
+        while(this.readers != 0){
+            try{
+                this.wait();
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Writer " + number + " started writing");
+
+        try{
+            Thread.sleep((int) (Math.random() * 5000));
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("Writer " + number + " stopped writing");
+        this.notifyAll();
+    }
 }

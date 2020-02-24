@@ -6,7 +6,7 @@ public class Reader extends Thread {
 
     public Reader(Data db){
         this.db = db;
-        this.number = Reader.readers += 1;
+        this.number = Reader.readers ++;
     }
 
     public void run(){
